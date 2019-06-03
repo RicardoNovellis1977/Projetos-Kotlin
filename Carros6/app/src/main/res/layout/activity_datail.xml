@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+<LinearLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".view.DatailActivity" android:padding="16dp">
+
+    <ImageView
+
+            android:id="@+id/image_datail_car"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="40dp"
+            android:gravity="center"
+            android:src="@drawable/audir8"/>
+
+    <TextView
+            android:id="@+id/text_model"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/modelo" android:textSize="24sp" android:textColor="@android:color/black"
+            android:gravity="center"/>
+
+    <TextView
+            android:id="@+id/text_marca"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/modelo"
+            android:textSize="12sp"
+            android:textAllCaps="true"
+            android:gravity="center"/>
+
+    <TextView
+            android:id="@+id/text_horse_power"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/cavalos"
+            android:textSize="24sp"
+            android:layout_marginTop="40dp"
+            android:textColor="@android:color/black"
+            android:gravity="center"/>
+
+
+    <TextView
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/cavalos"
+            android:textAllCaps="true"
+            android:textSize="12sp"
+            android:gravity="center"/>
+
+
+    <TextView
+            android:id="@+id/text_price"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:text="@string/preco"
+            android:textColor="@color/colorPrimary"
+            android:textSize="24sp"
+            android:gravity="center"/>
+
+    <TextView
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/valor"
+            android:textSize="12sp"
+            android:textAllCaps="true"
+            android:gravity="center"/>
+
+
+</LinearLayout>
+
+</ScrollView>
