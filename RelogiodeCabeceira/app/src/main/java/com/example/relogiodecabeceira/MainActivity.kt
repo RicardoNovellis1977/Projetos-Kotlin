@@ -39,13 +39,27 @@ class MainActivity : AppCompatActivity() {
     val broadCastReceiver = object : BroadcastReceiver() {
         override fun onReceive(contxt: Context?, intent: Intent?) {
 
-            val checkBattery: CheckBox = check_battery
+            val checkBattery: TextView = check_battery
             val levelBattery: TextView = text_battery_level
 
+            val ifilter = IntentFilter(Intent.ACTION_BATTERY_CHANGED)
+            val batteryStatus = baseContext.registerReceiver(null, ifilter)
+
             val level: Int = intent!!.getIntExtra(BatteryManager.EXTRA_LEVEL, 0)
+            val status = batteryStatus.getIntExtra(BatteryManager.EXTRA_STATUS, -1)
+            val isCharging =
+                status === BatteryManager.BATTERY_STATUS_CHARGING || status === BatteryManager.BATTERY_STATUS_FULL
 
-            levelBattery.text = """$level%"""
+            when (isCharging) {
 
+                true -> {checkBattery.text = "  Carregando..."
+                levelBattery.text = """$level%"""}
+
+                false ->{levelBattery.text = """$level%"""
+                    checkBattery.text = "  Nivel da Bateria "}
+
+
+            }
         }
     }
 
