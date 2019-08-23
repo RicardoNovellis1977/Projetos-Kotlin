@@ -1,12 +1,9 @@
 package com.example.carros.view
 
-import android.graphics.Bitmap
-import android.graphics.drawable.Drawable
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import android.widget.ImageView
 import android.widget.TextView
-import com.example.carros.ImageHelper
 import com.example.carros.R
 import kotlinx.android.synthetic.main.activity_datail.*
 
@@ -16,9 +13,20 @@ class DatailActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_datail)
 
+        iniciarComponents()
+
+        addDatail()
+    }
+
+    fun iniciarComponents(){
+
         supportActionBar?.setDisplayShowTitleEnabled(false)
         supportActionBar?.setDisplayShowHomeEnabled(true)
         supportActionBar?.setIcon(R.mipmap.ic_launcher)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+    }
+
+    fun addDatail(){
 
         val marca: TextView = text_marca
         val model: TextView = text_model
@@ -27,17 +35,16 @@ class DatailActivity : AppCompatActivity() {
         val imageDetail : ImageView = image_datail_car
 
         val bundle: Bundle = intent.extras
-        val carMarca: String = bundle.getString("marca")
-        val carModelo: String = bundle.getString("modelo")
-        val carHorse: String = bundle.getString("cavalos")
-        val carPrice: String = bundle.getString("preco")
+        val carMarca: String? = bundle.getString("marca")
+        val carModelo: String? = bundle.getString("modelo")
+        val carHorse: String? = bundle.getString("cavalos")
+        val carPrice: String? = bundle.getString("preco")
         val imageCarDetail : Int = bundle.getInt("image")
 
-       marca.text = carMarca
+        marca.text = carMarca
         model.text = carModelo
         horsePower.text = carHorse
         price.text = carPrice
         imageDetail.setImageResource(imageCarDetail)
-
     }
 }

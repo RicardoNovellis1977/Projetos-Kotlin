@@ -47,7 +47,7 @@ class MainActivity : AppCompatActivity() {
 
         searchView.setOnQueryTextListener(object : MaterialSearchView.OnQueryTextListener {
 
-            override fun onQueryTextSubmit(query : String): Boolean {
+            override fun onQueryTextSubmit(query: String): Boolean {
 
                 recuperarVideos(query)
 
@@ -73,15 +73,15 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    private fun recuperarVideos( pesquisa : String) {
+    private fun recuperarVideos(pesquisa: String) {
 
-        val q : String = pesquisa.replace(" ","+")
+        val q: String = pesquisa.replace(" ", "+")
         val retrofit: Retrofit = RetrofitConfig().getRetrofit()
 
         var youtubeService: YoutubeService = retrofit.create(YoutubeService::class.java)
 
         youtubeService.recuperarVideos(
-            "snippet", "date", "20", YouTubeConfig().CHAVE_YOUTUBE_API, YouTubeConfig().CANAL_ID,q
+            "snippet", "date", "20", YouTubeConfig().CHAVE_YOUTUBE_API, YouTubeConfig().CANAL_ID, q
         ).enqueue(object : Callback<Resultados> {
 
             override fun onFailure(call: Call<Resultados>, t: Throwable) {
@@ -115,11 +115,11 @@ class MainActivity : AppCompatActivity() {
                 object : RecyclerItemClickListener.OnItemClickListener {
                     override fun onItemClick(view: View, position: Int) {
 
-                       var video : Item = videos.get(position)
-                        var idVideo : String? = video.id?.videoId
+                        var video: Item = videos.get(position)
+                        var idVideo: String? = video.id?.videoId
 
                         val intent = Intent(this@MainActivity, PlayerActivity::class.java)
-                        intent.putExtra("idVideo",idVideo)
+                        intent.putExtra("idVideo", idVideo)
                         startActivity(intent)
 
                     }

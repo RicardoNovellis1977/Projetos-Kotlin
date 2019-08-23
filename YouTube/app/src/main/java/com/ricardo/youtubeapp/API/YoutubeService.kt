@@ -9,12 +9,18 @@ interface YoutubeService {
 
     @GET("search")
     fun recuperarVideos(
-        @Query("part") part: String,
-        @Query("order") order: String,
-        @Query("maxResults") maxResults: String,
-        @Query("key") key: String,
-        @Query("channelId") channelId: String,
-        @Query("q") q : String
+        @Query
+            ("part") part: String,
+        @Query
+            ("order") order: String,
+        @Query
+            ("maxResults") maxResults: String,
+        @Query
+            ("key") key: String,
+        @Query
+            ("channelId") channelId: String,
+        @Query
+            ("q") q: String
     ): Call<Resultados>
 
 }

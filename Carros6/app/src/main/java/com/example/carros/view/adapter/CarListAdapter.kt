@@ -1,27 +1,25 @@
-package com.example.carros.adapter
+package com.example.carros.view.adapter
 
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.support.v4.content.ContextCompat.startActivity
-import android.support.v7.widget.RecyclerView
+import androidx.core.content.ContextCompat.startActivity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import com.example.carros.ImageHelper
 import com.example.carros.R
 import com.example.carros.model.Cars
 import com.example.carros.view.DatailActivity
 import kotlinx.android.synthetic.main.row_car_list.view.*
+import java.util.*
 
 class CarListAdapter(
     private val context: Context,
-    private val listCar: ArrayList<Cars>
-) : RecyclerView.Adapter<CarListAdapter.ViewHolder>() {
-
+    private val listCar: MutableList<Cars>
+) : androidx.recyclerview.widget.RecyclerView.Adapter<CarListAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(p0: ViewGroup, p1: Int): ViewHolder {
 
@@ -32,8 +30,6 @@ class CarListAdapter(
 
     override fun getItemCount(): Int = listCar.size
 
-
-    @SuppressLint("RestrictedApi")
     override fun onBindViewHolder(p0: ViewHolder, p1: Int) {
 
         val car = listCar[p1]
@@ -41,7 +37,7 @@ class CarListAdapter(
 
     }
 
-    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class ViewHolder(itemView: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(itemView) {
 
         val modelo: TextView = itemView.text_modelCar
         val detail: TextView = itemView.view_detail
@@ -49,12 +45,12 @@ class CarListAdapter(
 
         fun binData(car: Cars) {
             modelo.text = car.model
-            image.setImageDrawable(car.picture)
+            image.setImageResource(car.pictureIntResource!!)
             detail.setOnClickListener {
 
-                val intent: Intent = Intent(context, DatailActivity::class.java)
+                val intent = Intent(context, DatailActivity::class.java)
 
-                val bundle: Bundle = Bundle()
+                val bundle = Bundle()
                 bundle.putString("marca", car.manuFacturer)
                 bundle.putString("modelo",car.model)
                 bundle.putString("cavalos",car.horsePower)

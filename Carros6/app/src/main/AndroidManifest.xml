@@ -3,6 +3,7 @@
           xmlns:tools="http://schemas.android.com/tools" package="com.example.carros">
 
     <application
+            android:name=".MyAplication"
             android:allowBackup="true"
             android:icon="@mipmap/ic_launcher"
             android:label="@string/app_name"
@@ -20,7 +21,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".view.DatailActivity">
+        <activity android:name=".view.DatailActivity"
+        android:parentActivityName=".view.MainActivity">
         </activity>
     </application>
 
