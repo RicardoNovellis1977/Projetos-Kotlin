@@ -1,6 +1,6 @@
-package com.ricardo.youtubeapp.API
+package com.ricardo.youtubeapp.data.API
 
-import com.ricardo.youtubeapp.model.Resultados
+import com.ricardo.youtubeapp.data.model.Resultados
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Query

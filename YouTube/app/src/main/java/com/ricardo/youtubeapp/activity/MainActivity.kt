@@ -10,15 +10,16 @@ import android.view.Menu
 import android.view.MenuInflater
 import android.view.View
 import android.widget.AdapterView
+import android.widget.ProgressBar
 import com.miguelcatalan.materialsearchview.MaterialSearchView
-import com.ricardo.youtubeapp.API.YoutubeService
+import com.ricardo.youtubeapp.data.API.YoutubeService
 import com.ricardo.youtubeapp.R
-import com.ricardo.youtubeapp.adapter.AdapterVideo
-import com.ricardo.youtubeapp.helper.RetrofitConfig
-import com.ricardo.youtubeapp.helper.YouTubeConfig
-import com.ricardo.youtubeapp.listener.RecyclerItemClickListener
-import com.ricardo.youtubeapp.model.Item
-import com.ricardo.youtubeapp.model.Resultados
+import com.ricardo.youtubeapp.activity.adapter.AdapterVideo
+import com.ricardo.youtubeapp.data.helper.RetrofitConfig
+import com.ricardo.youtubeapp.data.helper.YouTubeConfig
+import com.ricardo.youtubeapp.data.listener.RecyclerItemClickListener
+import com.ricardo.youtubeapp.data.model.Item
+import com.ricardo.youtubeapp.data.model.Resultados
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.toolbar.*
 import retrofit2.Call
@@ -35,8 +36,12 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        configToolbar()
 
         recuperarVideos("")
+    }
+
+    private fun configToolbar(){
 
         val toolbar: Toolbar? = this.toolbar
         toolbar?.title = "Youtube"
@@ -44,11 +49,10 @@ class MainActivity : AppCompatActivity() {
 
         val searchView: MaterialSearchView = searchView
 
-
         searchView.setOnQueryTextListener(object : MaterialSearchView.OnQueryTextListener {
 
             override fun onQueryTextSubmit(query: String): Boolean {
-
+                progressBar2.visibility = View.VISIBLE
                 recuperarVideos(query)
 
                 return true
@@ -78,14 +82,13 @@ class MainActivity : AppCompatActivity() {
         val q: String = pesquisa.replace(" ", "+")
         val retrofit: Retrofit = RetrofitConfig().getRetrofit()
 
-        var youtubeService: YoutubeService = retrofit.create(YoutubeService::class.java)
+        val youtubeService: YoutubeService = retrofit.create(YoutubeService::class.java)
 
         youtubeService.recuperarVideos(
             "snippet", "date", "20", YouTubeConfig().CHAVE_YOUTUBE_API, YouTubeConfig().CANAL_ID, q
         ).enqueue(object : Callback<Resultados> {
 
             override fun onFailure(call: Call<Resultados>, t: Throwable) {
-
 
             }
 
@@ -94,11 +97,10 @@ class MainActivity : AppCompatActivity() {
                 if (response.isSuccessful) {
                     val resultados: Resultados? = response.body()
                     videos = resultados?.items as ArrayList<Item>
-
+                    progressBar2.visibility = View.GONE
                     configurarRecyclerView()
                 }
             }
-
         })
     }
 
@@ -115,8 +117,8 @@ class MainActivity : AppCompatActivity() {
                 object : RecyclerItemClickListener.OnItemClickListener {
                     override fun onItemClick(view: View, position: Int) {
 
-                        var video: Item = videos.get(position)
-                        var idVideo: String? = video.id?.videoId
+                        val video: Item = videos.get(position)
+                        val idVideo: String? = video.id?.videoId
 
                         val intent = Intent(this@MainActivity, PlayerActivity::class.java)
                         intent.putExtra("idVideo", idVideo)

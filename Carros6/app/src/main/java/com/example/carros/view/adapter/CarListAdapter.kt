@@ -18,7 +18,7 @@ import java.util.*
 
 class CarListAdapter(
     private val context: Context,
-    private val listCar: MutableList<Cars>
+    private val listCar: MutableList<Cars>? = null
 ) : androidx.recyclerview.widget.RecyclerView.Adapter<CarListAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(p0: ViewGroup, p1: Int): ViewHolder {
@@ -28,11 +28,11 @@ class CarListAdapter(
         return ViewHolder(view)
     }
 
-    override fun getItemCount(): Int = listCar.size
+    override fun getItemCount(): Int = listCar!!.size
 
     override fun onBindViewHolder(p0: ViewHolder, p1: Int) {
 
-        val car = listCar[p1]
+        val car = listCar!![p1]
         p0.binData(car)
 
     }

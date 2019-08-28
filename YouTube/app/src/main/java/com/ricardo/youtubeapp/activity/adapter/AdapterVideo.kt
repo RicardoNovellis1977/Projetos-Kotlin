@@ -1,4 +1,4 @@
-package com.ricardo.youtubeapp.adapter
+package com.ricardo.youtubeapp.activity.adapter
 
 import android.content.Context
 import android.support.v7.widget.RecyclerView
@@ -8,9 +8,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import com.ricardo.youtubeapp.R
-import com.ricardo.youtubeapp.model.Item
-import com.ricardo.youtubeapp.model.Snippet
-import com.ricardo.youtubeapp.model.Video
+import com.ricardo.youtubeapp.data.model.Item
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.item_video.view.*
 

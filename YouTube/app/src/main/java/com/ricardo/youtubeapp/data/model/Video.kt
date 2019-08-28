@@ -1,4 +1,4 @@
-package com.ricardo.youtubeapp.model
+package com.ricardo.youtubeapp.data.model
 
  data class Video (
     var titulo : String = "",

@@ -7,9 +7,9 @@ import com.example.carros.model.GestorDeCars
 class MainViewModel(val gestorDeCars : GestorDeCars): ViewModel() {
 
 
-    fun getCars (cars : MutableList<Cars>){
+    fun getCars (cars : MutableList<Cars>):MutableList<Cars>{
 
-            gestorDeCars.getCars(cars)
+          return  gestorDeCars.getCars(cars)!!
     }
 
 }

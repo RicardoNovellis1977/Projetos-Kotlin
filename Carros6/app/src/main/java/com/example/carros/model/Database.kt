@@ -7,9 +7,9 @@ class Database {
 
     private val mDatabase : MutableLiveData<MutableList<Cars>> = MutableLiveData()
 
-    fun listCar(listaCar : MutableList<Cars>? ):MutableLiveData<MutableList<Cars>>{
+    fun listCar(listaCar :MutableList<Cars>):MutableLiveData<MutableList<Cars>>{
 
-      addCar(listaCar)
+      addCar(listaCar!!)
 
         return mDatabase
     }

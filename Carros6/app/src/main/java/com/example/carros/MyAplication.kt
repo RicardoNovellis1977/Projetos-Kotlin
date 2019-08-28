@@ -10,7 +10,8 @@ class MyAplication : Application() {
         super.onCreate()
 
         startKoin(this,
-            listOf(ModuloDeDependencia.moduloApp)
+            listOf(ModuloDeDependencia.moduloApp,
+                ModuloDeDependencia.moduloDetail)
             )
     }
 }

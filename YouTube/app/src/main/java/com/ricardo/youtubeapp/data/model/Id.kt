@@ -1,4 +1,4 @@
-package com.ricardo.youtubeapp.model
+package com.ricardo.youtubeapp.data.model
 
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName

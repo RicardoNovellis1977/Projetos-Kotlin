@@ -1,13 +1,12 @@
 package com.ricardo.youtubeapp.activity
 
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import com.google.android.youtube.player.YouTubeBaseActivity
 import com.google.android.youtube.player.YouTubeInitializationResult
 import com.google.android.youtube.player.YouTubePlayer
 import com.google.android.youtube.player.YouTubePlayerView
 import com.ricardo.youtubeapp.R
-import com.ricardo.youtubeapp.helper.YouTubeConfig
+import com.ricardo.youtubeapp.data.helper.YouTubeConfig
 import kotlinx.android.synthetic.main.activity_player.*
 
 class PlayerActivity : YouTubeBaseActivity(),YouTubePlayer.OnInitializedListener {
@@ -15,7 +14,6 @@ class PlayerActivity : YouTubeBaseActivity(),YouTubePlayer.OnInitializedListener
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_player)
-
 
         val youtubePlayerView : YouTubePlayerView = playerVideo
         youtubePlayerView.initialize(YouTubeConfig().CHAVE_YOUTUBE_API,this)
@@ -31,8 +29,6 @@ class PlayerActivity : YouTubeBaseActivity(),YouTubePlayer.OnInitializedListener
         p1?.setShowFullscreenButton(false)
         p1?.loadVideo(idVideo)
     }
-
     override fun onInitializationFailure(p0: YouTubePlayer.Provider?, p1: YouTubeInitializationResult?) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 }

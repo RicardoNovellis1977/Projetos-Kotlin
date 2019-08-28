@@ -5,9 +5,15 @@ import androidx.appcompat.app.AppCompatActivity
 import android.widget.ImageView
 import android.widget.TextView
 import com.example.carros.R
+import com.example.carros.viewmodels.DetailViewModel
+import com.example.carros.viewmodels.MainViewModel
 import kotlinx.android.synthetic.main.activity_datail.*
+import org.koin.android.viewmodel.ext.android.viewModel
 
 class DatailActivity : AppCompatActivity() {
+
+    private val detailViewModel: DetailViewModel by viewModel()
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,26 +31,14 @@ class DatailActivity : AppCompatActivity() {
         supportActionBar?.setIcon(R.mipmap.ic_launcher)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
-
     fun addDatail(){
 
-        val marca: TextView = text_marca
-        val model: TextView = text_model
-        val horsePower: TextView = text_horse_power
-        val price: TextView = text_price
-        val imageDetail : ImageView = image_datail_car
+        detailViewModel.getDetail(intent)
 
-        val bundle: Bundle = intent.extras
-        val carMarca: String? = bundle.getString("marca")
-        val carModelo: String? = bundle.getString("modelo")
-        val carHorse: String? = bundle.getString("cavalos")
-        val carPrice: String? = bundle.getString("preco")
-        val imageCarDetail : Int = bundle.getInt("image")
-
-        marca.text = carMarca
-        model.text = carModelo
-        horsePower.text = carHorse
-        price.text = carPrice
-        imageDetail.setImageResource(imageCarDetail)
+        text_marca.text = detailViewModel.carMarca
+        text_model.text = detailViewModel.carModelo
+        text_horse_power.text = detailViewModel.carHorse
+        text_price.text = detailViewModel.carPrice
+        image_datail_car.setImageResource(detailViewModel.imageCarDetail!!)
     }
 }
